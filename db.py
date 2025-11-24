@@ -11,18 +11,6 @@ def get_connection():
         password="secret"
     )
 
-# Initialize database using init.sql
-def init_db():
-    conn = get_connection()
-    cur = conn.cursor()
-
-    with open("init.sql", "r") as f:
-        cur.execute(f.read())
-
-    conn.commit()
-    conn.close()
-    print("Database initialized!")
-
 # Fetch all rows (SELECT)
 def fetch_all(query, params=None):
     conn = get_connection()
@@ -39,7 +27,3 @@ def execute_query(query, params=None):
     cur.execute(query, params)
     conn.commit()
     conn.close()
-
-# Allow running python db.py to initialize manually
-if __name__ == "__main__":
-    init_db()
